@@ -57,9 +57,10 @@ def checkout(skus):
     
     return sum_price
             
-    
+print(checkout("EE"))  
 
     
         
+
 
 
