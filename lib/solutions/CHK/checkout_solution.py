@@ -48,7 +48,8 @@ def checkout(skus):
                 #Other item offer
                 elif isinstance(offer[1],str):
                     number_offer = sku_freq[item]//offer[0]
-                    sku_freq[offer[1]] -= number_offer
+                    if sku_freq[offer[1]]>0:
+                        sku_freq[offer[1]] -= number_offer
    
             sum_price += sku_freq[item]*prices[item]
         else:
@@ -60,4 +61,5 @@ def checkout(skus):
 
     
         
+
 
