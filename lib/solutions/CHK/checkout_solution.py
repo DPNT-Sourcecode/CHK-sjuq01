@@ -9,12 +9,14 @@ def checkout(skus):
         "B": 30,
         "C": 20,
         "D": 15,
-        "E": 40
+        "E": 40,
+        "F": 10
     }
     offers = {
         "A": [[5,200],[3,130]],
         "B": [[2,45]],
-        "E": [[2,"B"]]
+        "E": [[2,"B"]],
+        "F": [[2,20]]
     }
     
     #Determine frequency of skus
@@ -23,7 +25,8 @@ def checkout(skus):
         "B":0,
         "C":0,
         "D":0,
-        "E":0
+        "E":0,
+        "F":0
     }
     
     for sku in skus:
@@ -34,7 +37,7 @@ def checkout(skus):
     #Price determination
     sum_price = 0
     #Prioritisation of items
-    priority_order = ["E", "A", "B", "C", "D"]
+    priority_order = ["E", "A", "B", "C", "D", "F"]
     
     for item in priority_order:
         if item in offers.keys():
@@ -57,10 +60,11 @@ def checkout(skus):
     
     return sum_price
             
-# print(checkout("ABCDE"))  
+# print(checkout("FFF"))  
 
     
         
+
 
 
 
