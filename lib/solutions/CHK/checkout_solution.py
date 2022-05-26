@@ -57,10 +57,11 @@ def checkout(skus):
     
     return sum_price
             
-print(checkout("EE"))  
+# print(checkout("ABCDE"))  
 
     
         
+
 
 
 
