@@ -16,7 +16,7 @@ def checkout(skus):
         "A": [[5,200],[3,130]],
         "B": [[2,45]],
         "E": [[2,"B"]],
-        "F": [[2,20]]
+        "F": [[3,20]]
     }
     
     #Determine frequency of skus
@@ -60,7 +60,8 @@ def checkout(skus):
     
     return sum_price
             
-print(checkout("ABCDEF"))  
+# print(checkout("ABCDEF"))  
 
     
         
+
