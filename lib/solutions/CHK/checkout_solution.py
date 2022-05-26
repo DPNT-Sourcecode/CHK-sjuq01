@@ -60,12 +60,7 @@ def checkout(skus):
     
     return sum_price
             
-# print(checkout("FFF"))  
+print(checkout("ABCDEF"))  
 
     
         
-
-
-
-
-
