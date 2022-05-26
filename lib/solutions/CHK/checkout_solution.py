@@ -58,7 +58,7 @@ def checkout(skus):
     #Price determination
     sum_price = 0
     #Prioritisation of items
-    priority_order = ["E", "A", "B", "C", "D", "F"]
+    priority_order = ["E", "N", "R", "A", "B", "C", "D", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
     for item in priority_order:
         if item in offers.keys():
@@ -81,9 +81,10 @@ def checkout(skus):
     
     return sum_price
             
-print(checkout("FFABCDECBAABCABBAAAEEAAFF"))  
+# print(checkout("FFABCDECBAABCABBAAAEEAAFF"))  
 
     
         
+
 
 
