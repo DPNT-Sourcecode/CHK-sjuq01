@@ -34,12 +34,15 @@ def checkout(skus):
     for item in sku_freq.keys():
         if item in offers.keys():
             number_offer = sku_freq[item]//offers[item][0]
-            sum_price += number_offer*offers[item][1] + (sku_freq[item]-number_offer)*prices[item]
+            sum_price += number_offer*offers[item][1] + (sku_freq[item]-(number_offer*offers[item][0]))*prices[item]
         else:
             sum_price += sku_freq[item]*prices[item]
+    
+    return sum_price
             
     
 
     
         
+
 
