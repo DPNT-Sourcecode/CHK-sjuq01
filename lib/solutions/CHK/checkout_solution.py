@@ -120,5 +120,3 @@ print(checkout("SSS"))
 
     
         
-
-
