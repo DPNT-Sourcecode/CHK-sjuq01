@@ -116,8 +116,9 @@ def checkout(skus):
     
     return sum_price
             
-# print(checkout("FFABCDECBAABCABBAAAEEAAFF"))  
+print(checkout("SSS"))  
 
     
         
+
 
