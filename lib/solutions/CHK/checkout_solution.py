@@ -1,4 +1,28 @@
+# Determine the multioffer discount for a specific offer
+def multioffer(sku_freq, number, price, priority):
+    # Determine count of involved items
+    count = 0
+    for item in priority:
+        count += sku_freq[item]
+    
+    # Determine the number of offers and the resulting sku frequencies post application
+    number_offer = count//number
+    overflow = count%number
+    priority_count = len(priority) - 1
+    
+    while overflow >= 0 and priority_count >= 0:
+        if sku_freq[priority[priority_count]] >= overflow:
+            sku_freq[priority[priority_count]] = overflow
+            overflow = 0
+        else:
+            overflow -= sku_freq[priority[priority_count]]
+        priority_count -= 1
 
+    while priority_count >= 0:
+        sku_freq[priority[priority_count]] = 0
+        priority_count -= 1
+    
+    return sku_freq, number_offer*price
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -45,7 +69,12 @@ def checkout(skus):
         "Q": [[3,80]],
         "R": [[3,"Q"]],
         "U": [[4,120]],
-        "V": [[3,130],[2,90]]
+        "V": [[3,130],[2,90]],
+        "S": [[3,"STXYZ", 45]],
+        "T": [[3,"STXYZ", 45]],
+        "X": [[3,"STXYZ", 45]],
+        "Y": [[3,"STXYZ", 45]],
+        "Z": [[3,"STXYZ", 45]],
     }
     
     #Determine frequency of skus
@@ -59,7 +88,7 @@ def checkout(skus):
     #Price determination
     sum_price = 0
     #Prioritisation of items
-    priority_order = ["E", "N", "R", "A", "B", "C", "D", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    priority_order = ["S", "T", "X", "Y", "Z", "E", "N", "R", "A", "B", "C", "D", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "U", "V", "W"]
     
     for item in priority_order:
         if item in offers.keys():
@@ -71,10 +100,15 @@ def checkout(skus):
                     sum_price += number_offer*offer[1]
                 
                 #Other item offer
-                elif isinstance(offer[1],str):
+                elif isinstance(offer[1],str) and len(offer[1]) == 1:
                     number_offer = sku_freq[item]//offer[0]
                     if sku_freq[offer[1]]>0:
                         sku_freq[offer[1]] -= number_offer
+                
+                # Multi item offer
+                elif isinstance(offer[1], str) and len(offer[1]) > 1:
+                    sku_freq, price_addition = multioffer(sku_freq, offer[0], offer[2], sorted(offer[1], reverse=True, key = lambda x: prices[x]))
+                    sum_price += price_addition
    
             sum_price += sku_freq[item]*prices[item]
         else:
@@ -86,3 +120,4 @@ def checkout(skus):
 
     
         
+
